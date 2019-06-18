@@ -73,7 +73,7 @@ create proc Answer_4
 as
 
 select 
-	Book_Loans.BookID,
+	Books.Title,
 	Borrower.Name,
 	Borrower.Address
 
@@ -81,6 +81,8 @@ select
 		borrower
 		inner join Book_Loans
 		on Borrower.CardNo = Book_Loans.CardNo
+		inner join Books
+		on Book_Loans.BookID = Books.Title
 
 where 
 	Book_Loans.DateDue = GETDATE()
@@ -154,8 +156,3 @@ from
 
 where
 	Book_Authors.AuthorName = 'Stephen King' and Library_Branch.BranchName = 'Central'
-
-go
-
-exec Answer_7;
-
